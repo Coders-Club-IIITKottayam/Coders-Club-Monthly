@@ -32,7 +32,7 @@ From the question, we basically understand that we need to find such values $x$ 
 
 Let’s arrange the sticks on a number line. They can be seen as segments/intervals like $(l_1, r_1), (l_2, r_2), ..., (l_n, r_n)$ on it. We need our single stick to reach the right end of the leftmost segment $r_{min}$ and left end of the rightmost segment $l_{max}$ as shown in the diagram. In this way, we can ensure we cover all segments with the minimum length. As an edge case, for a single segment, we don’t need any sticks. Therefore, the answer is $max(0, l_{max} - r_{min})$ and can be easily found in $O(n)$.
 
-![Untitled](Coder%E2%80%99s%20Club%20Chapter%20#01%20Editorial%20ccb9065f362348949fe1d89fd56e489a/Untitled.png)
+![Untitled](assets/Untitled.png)
 
 ```cpp
 void solve() {
@@ -85,9 +85,9 @@ Let’s list out the appearance of each possible value of $a_i$ for every operat
 
 Thus, in the first image, we need to count all pairs of $(0, 1), (1, 0), (1, 1)$, or simply, (total number of pairs) $-$ (pairs of $(0, 0)$) for every $a_i$. In the examples below, the answers turns up to be $44$.
 
-![Untitled](Coder%E2%80%99s%20Club%20Chapter%20#01%20Editorial%20ccb9065f362348949fe1d89fd56e489a/Untitled%201.png)
+![Untitled](assets/Untitled%201.png)
 
-![Untitled](Coder%E2%80%99s%20Club%20Chapter%20#01%20Editorial%20ccb9065f362348949fe1d89fd56e489a/Untitled%202.png)
+![Untitled](assets/Untitled%202.png)
 
 But question isn’t over yet. $n$ and $k$ both range as $(1 \le n, k \le 2 \cdot  10^5)$. If we count occurrences for every possible value every operations, we are going to get a TLE as it goes $O(k(n+k))$. This, however, can be prevented be storing the last occurrence of a value before it is replaced in an operation in a map. Only when that value reappears in an operation, we subtract the last occurrence from the current one to get number of operations the value was absent and add it to its total number of absences. This avoid doing operations on all possible $(n+k)$ values. This can be done in $O(k\log(n + k))$ using map.
 
@@ -178,7 +178,7 @@ This question is a really fun one as it is not like any other question in this e
 
 A permutation is simply just a rearrangement of elements. Formally, a permutation of a set $S$ is defined as a bijection (one-one and onto) from $S$ to itself as shown below.
 
-![Untitled](Coder%E2%80%99s%20Club%20Chapter%20#01%20Editorial%20ccb9065f362348949fe1d89fd56e489a/Untitled%203.png)
+![Untitled](assets/Untitled%203.png)
 
 As per the question, we are given a permutation $a$ of length $n$. We need to generate two permutations $p$ and $q$, if possible, such that $p$ and $q$ have **no fixed points** and $a[p[q[i]]] = i$. We will think about checking for fixed points later. For now, let’s see how we can generate permutations $p$ and $q$.
 
@@ -187,7 +187,7 @@ As per the question, we are given a permutation $a$ of length $n$. We need to ge
 - First modifying $a[p[q[i]]] = i \to q[a[p[q[i]]]] = q[i]$ by taking q both sides
 - Finally ending up with $q[a[p[i]]] = i$ by replacing $q[i]$ with $i$
 
-![Untitled](Coder%E2%80%99s%20Club%20Chapter%20#01%20Editorial%20ccb9065f362348949fe1d89fd56e489a/Untitled%204.png)
+![Untitled](assets/Untitled%204.png)
 
 **GENERATING $p$:** Now that we know how to generate $q$ given we have $p$, we need to find a method to generate $p$ such that $p$ and $q$ have no fixed points. In mathematics, permutations like $p$ and $q$, that have **no fixed points,** are knows as **derangements**. Simply, a derangement $p$ is a permutation that has no fixed points, that is $\forall i$ : $p_i \neq i$. Therefore, we infinitely loop and try to generate a permutation $p$ randomly until both $p$ and $q$ satisfy derangement property. If an answer exists, then we break out of the loop and output both $p$ and $q$.
 
