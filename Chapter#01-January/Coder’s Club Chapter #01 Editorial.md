@@ -19,7 +19,8 @@ From the question, we basically understand that we need to find such values $x$ 
        int m = sqrt(n);
        for(int i = m; i >= 1; i--) {
           if(n % i == 0) {
-             cout << min(i, n / i) << " " << max(i, n / i) << endl;
+             cout << min(i, n / i) << " " 
+    				  << max(i, n / i) << endl;
              return;
           }
        }
@@ -41,7 +42,7 @@ void solve() {
    for(int i = 0; i < n; i++) {
       cin >> l[i] >> r[i];
    }
-	 int l_max = *max_element(l.begin(), l.end());
+   int l_max = *max_element(l.begin(), l.end());
    int r_min = *min_element(r.begin(), r.end());
    cout << max(0ll, l_max - r_min) << endl;
 }
@@ -208,7 +209,7 @@ bool hasFP(vector<int>& a, int n) {
    return false;
 }
 
-void zero() {
+void solve() {
    int n;
    cin >> n;
    vector<int> a(n);
@@ -217,7 +218,8 @@ void zero() {
    }
    vector<int> p(n), q(n);
    iota(p.begin(), p.end(), 1ll);
-   mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+   mt19937 rng(chrono::steady_clock::now()
+               .time_since_epoch().count());
    int ops = 0;
    while(ops < 500) {
       shuffle(p.begin(), p.end(), rng);
