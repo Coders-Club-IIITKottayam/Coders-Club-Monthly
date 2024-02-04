@@ -135,7 +135,7 @@ Here, we increase the count of sub-sequences of current set by 1.
 $dp[i][j] = dp[i][j] + dp[i - 1][j]$
 Here, we don’t take the current element. Thus, the count of sub-sequences of current set is increased by that of previous set of elements with the **same** AND value.
 - We choose to **TAKE** $i$-th element in current count.
-$dp[i][j \& a[i]] = dp[i][j \& a[i]] + dp[i - 1][j]$
+$dp[i][j \\& a[i]] = dp[i][j \\& a[i]] + dp[i - 1][j]$
 Here, we take the current element. Thus, the count of sub-sequences of current set with a **modified** AND value is increased by that of previous set of elements with an **unmodified** AND value.
 
 Normally, for all possibilities, we would have summed up the values of $dp[n][j]$ for $\forall j \in [0, 63]$. Alternatively, if we wanted number of sub-sequences with AND value $v$, we would gone for $dp[n][v]$. The answer, however, requires only sub-sequences with AND value having $k$ set bits. Therefore, we just iterate over $j \in [0, 63]$ and check number of set bits in $j$. If it is equals to $k$, we add its DP value to the final answer. In other words, we find $\sum dp[n][j]$ for $\forall j \in [0, 63]$ such that $setbits(j) = k$.
